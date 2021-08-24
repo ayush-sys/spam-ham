@@ -2,6 +2,8 @@ import streamlit as st
 import re
 import string
 import pandas as pd
+import nltk
+nltk.download('stopwords')
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
@@ -9,7 +11,7 @@ from sklearn.metrics import accuracy_score
 from nltk.corpus import stopwords
 
 
-df = pd.read_csv(r'C:\Users\Ayush Pattanayak\Desktop\ML-Python\projects\twitter-app\spam.csv')
+df = pd.read_csv(r'spam.csv', encoding='ISO-8859-1')
 df = df.drop(['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4'], axis=1)
 df.rename(columns = {'v1': 'labels', 'v2': 'message'}, inplace=True)
 df.drop_duplicates(inplace=True)
